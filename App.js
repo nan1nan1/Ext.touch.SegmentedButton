@@ -1,32 +1,18 @@
-Ext.setup({
-	onReady: function() {
-		var p = new Ext.Panel({
-			renderTo: Ext.getBody(),
-			height: 200,
-			width: 400,
-			padding: 10,
-			dockedItems : {
-				xtype : "toolbar",
-				dock : "top",
-				title: "Segmented Button"
-			},
-			items      : [
-				{
-					xtype : "ext.touch.segmentedbutton",
-					direction: "vertical",
-					items : [
-						{
-							text: 'Option 1'
-						},
-						{
-							text: 'Option 2'
-						},
-						{
-							text: 'Option 3'
-						}
-					]
-				}
-			]
-		});
-	}
+Ext.application({
+  launch: function() {
+    Ext.create("Ext.Panel", {
+      fullscreen: true,
+      items: [
+        {xtype: "toolbar", title: "vertical segmented button", docked: "top"},
+        { 
+          xtype: "segmentedbutton-v", 
+          items: [
+            {text: "Option 1"},
+            {text: "Option 2"},
+            {text: "Option 3"}
+          ]
+        }
+      ]
+    });
+  }
 });

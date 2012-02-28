@@ -1,16 +1,26 @@
 Ext.define("Ext.touch.SegmentedButton", {
-  extend: "Ext.SegmentedButton",
-  xtype: "segmentedbutton-v",
+  override: "Ext.SegmentedButton",
+
   config: {
-    cls: "x-segmentedbutton-v",
+    clsVert: "x-segmentedbutton-v",
     layout: {
       type: "vbox",
       align: "stretch"
-    }
+    },
+    direction: "horizontal"
   },
-
-  initialize:function(){
+  
+  constructor: function(config){
+    if(config.direction === "vertical"){
+      config.layout = {
+        type: "vbox",
+        align: "stretch"
+      }
+      config.baseCls = this.config.clsVert;
+      Ext.Array.each(config.items, function(item){
+        item.flex = item.flex || 1;
+      });
+    }
     this.callParent(arguments);
-    this.element.removeCls("x-segmentedbutton")
   }
 });
